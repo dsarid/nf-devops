@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nf-frontend
+  labels:
+    app: nf-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nf-frontend
+  template:
+    metadata:
+        labels:
+          app: nf-frontend
+    spec:
+      containers:
+      - name: server
+        image: inkcube/nf-frontend:0.0.0
+        env:
+          - name: MOVIE_CATALOG_SERVICE
+            value: http://nf-catalog-service:8080
+          - name: REDIS_URL
+            value: nf-redis-service.yaml:6379
+        resources:
+          requests:
+            cpu: 200m
+            memory: 500Mi
+          limits:
+            cpu: 500m
+            memory: 1000Mi

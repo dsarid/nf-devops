@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nf-catalog
+  labels:
+    app: nf-catalog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nf-catalog
+  template:
+    metadata:
+        labels:
+          app: nf-catalog
+    spec:
+      containers:
+      - name: server
+        image: inkcube/nf-catalog:0.0.1
