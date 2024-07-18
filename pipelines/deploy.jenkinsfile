@@ -23,8 +23,8 @@ pipeline {
                 sh '''
                     export IMAGE_NAME=${params.IMAGE_FULL_NAME_PARAM}
                     localrootdir=$(pwd)
-                    cat "${localrootdir}/templates/${params.SERVICE_NAME}/service.yaml" | envsubst > "${localrootdir}/k8s/${params.SERVICE_NAME}/service.yaml"
-                    git add "${localrootdir}/k8s/${params.SERVICE_NAME}/service.yaml"
+                    cat "${localrootdir}/templates/${params.SERVICE_NAME}/deployment.yaml" | envsubst > "${localrootdir}/k8s/${params.SERVICE_NAME}/deployment.yaml"
+                    git add "${localrootdir}/k8s/${params.SERVICE_NAME}/deployment.yaml"
                     git commit -m "deployed ${params.IMAGE_FULL_NAME_PARAM} image"
                 '''
 
