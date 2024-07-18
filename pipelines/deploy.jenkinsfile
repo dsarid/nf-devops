@@ -23,7 +23,7 @@ pipeline {
                 sh '''
                     export IMAGE_NAME="$IMAGE_FULL_NAME_PARAM"
                     echo $IMAGE_NAME
-                    cat "templates/${SERVICE_NAME}/deployment.yaml" | envsubst > "k8s/${SERVICE_NAME}/deployment.yaml"
+                    cat sed -i 's/IMAGE_NAME/${IMAGE_NAME}/g' "templates/${SERVICE_NAME}/deployment.yaml" > "k8s/${SERVICE_NAME}/deployment.yaml"
                     git add "k8s/${SERVICE_NAME}/deployment.yaml"
                     git commit -m "deployed ${IMAGE_FULL_NAME_PARAM} image"
                 '''
