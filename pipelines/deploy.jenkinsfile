@@ -21,11 +21,11 @@ pipeline {
                    * Setting Shell executable to `/bin/bash` in 'Manage Jenkins > System' is recommended.
                 */
                 sh '''
-                    export IMAGE_NAME="${params.IMAGE_FULL_NAME_PARAM}"
+                    export IMAGE_NAME="$IMAGE_FULL_NAME_PARAM"
                     echo $IMAGE_NAME
-                    cat "templates/${params.SERVICE_NAME}/deployment.yaml" | envsubst > "k8s/${params.SERVICE_NAME}/deployment.yaml"
-                    git add "k8s/${params.SERVICE_NAME}/deployment.yaml"
-                    git commit -m "deployed ${params.IMAGE_FULL_NAME_PARAM} image"
+                    cat "templates/${SERVICE_NAME}/deployment.yaml" | envsubst > "k8s/${SERVICE_NAME}/deployment.yaml"
+                    git add "k8s/${SERVICE_NAME}/deployment.yaml"
+                    git commit -m "deployed ${IMAGE_FULL_NAME_PARAM} image"
                 '''
 
             }
