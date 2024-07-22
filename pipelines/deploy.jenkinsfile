@@ -1,9 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        label 'general'
+    }
 
     parameters {
         string(name: 'SERVICE_NAME', defaultValue: '', description: '')
         string(name: 'IMAGE_FULL_NAME_PARAM', defaultValue: '', description: '')
+//         choice(name: 'SERVICE_NAME', choices: ['nf-catalog', 'nf-frontend'], description: 'Service to be build')
     }
 
     stages {
@@ -23,9 +26,11 @@ pipeline {
                 sh '''
                     export IMAGE_NAME="$IMAGE_FULL_NAME_PARAM"
                     echo $IMAGE_NAME
-                    sed -i 's/IMAGE_NAME/${IMAGE_NAME}/g' "templates/${SERVICE_NAME}/deployment.yaml" > "k8s/${SERVICE_NAME}/deployment.yaml"
+                    cd k8s/${SERVICE_NAME}
+                    sed -i 's|image: .*|image: ${IMAGE_FULL_NAME_PARAM}|' deployment.yaml
                     git add "k8s/${SERVICE_NAME}/deployment.yaml"
-                    git commit -m "deployed ${IMAGE_FULL_NAME_PARAM} image"
+                    git commit -m "Jenkins deploy $SERVICE_NAME $IMAGE_FULL_NAME_PARAM"
+                    git push origin master
                 '''
 
             }

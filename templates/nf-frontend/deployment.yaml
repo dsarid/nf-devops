@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: $IMAGE_NAME
+        image: $TEST
         env:
           - name: MOVIE_CATALOG_SERVICE
             value: http://nf-catalog-service:8080
