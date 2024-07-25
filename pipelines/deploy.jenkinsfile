@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Git setup') {
             steps {
-                sh 'git checkout -b main || git checkout main'
+                sh 'git checkout -b master || git checkout master'
             }
         }
         stage('update YAML manifest') {
@@ -42,7 +42,7 @@ pipeline {
             steps {
                withCredentials([usernamePassword(credentialsId: 'github_token', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')]) {
                  sh '''
-                 git push https://$GITHUB_TOKEN@github.com/dsarid/nf-devops.git main
+                 git push https://$GITHUB_TOKEN@github.com/dsarid/nf-devops.git master
                  '''
                }
             }
