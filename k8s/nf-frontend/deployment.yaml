@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: inkcube/nf-frontend:0.0.0
+        image: ${IMAGE_FULL_NAME_PARAM}
         env:
           - name: MOVIE_CATALOG_SERVICE
             value: http://nf-catalog-service:8080
