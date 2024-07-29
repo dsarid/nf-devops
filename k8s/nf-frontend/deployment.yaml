@@ -11,21 +11,21 @@ spec:
       app: nf-frontend
   template:
     metadata:
-        labels:
-          app: nf-frontend
+      labels:
+        app: nf-frontend
     spec:
       containers:
-      - name: server
-        image: ${IMAGE_FULL_NAME_PARAM}
-        env:
-          - name: MOVIE_CATALOG_SERVICE
-            value: http://nf-catalog-service:8080
-          - name: REDIS_URL
-            value: nf-redis-service.yaml:6379
-        resources:
-          requests:
-            cpu: 200m
-            memory: 500Mi
-          limits:
-            cpu: 500m
-            memory: 1000Mi
+        - name: server
+          image: bla-bla-bla
+          env:
+            - name: MOVIE_CATALOG_SERVICE
+              value: http://nf-catalog-service:8080
+            - name: REDIS_URL
+              value: nf-redis-service.yaml:6379
+          resources:
+            requests:
+              cpu: 200m
+              memory: 500Mi
+            limits:
+              cpu: 500m
+              memory: 1000Mi
