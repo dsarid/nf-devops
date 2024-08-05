@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: server
-        image: inkcube/nf-catalog:v1.0.11
+        image: inkcube/nf-catalog:v1.0.12
         resources:
           requests:
             cpu: 200m
